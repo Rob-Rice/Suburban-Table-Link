@@ -1,0 +1,291 @@
+{# 
+ NAME: JOB LISTING TABLE
+ MODULE VERSION: 1.0.3
+ CLEAN PRO VERSION: 6.2
+ LAST UPDATED: 6/1/22
+ REMINDER: You Rock!
+#}
+
+
+<style>
+  
+  {# ROW STYLE #}
+  
+  #hs_cos_wrapper_{{ name }} .hhs-table-mod {
+    padding-top: {{ module.style.adv_settings.padding_top }};
+    padding-bottom:  {{ module.style.adv_settings.padding_bottom }};
+    background-color: rgba({{ module.style.bg_color.color|convert_rgb }}, {{ module.style.bg_color.opacity * 0.01 }});
+  }
+  
+
+  }
+  
+  @media (max-width: 575px) {
+    #hs_cos_wrapper_{{ name }} .hhs-table-mod {
+      padding-top: {{ module.style.adv_settings.padding_top_mobile }};
+      padding-bottom: {{ module.style.adv_settings.padding_bottom_mobile }};
+    }
+  }
+  
+  {# SHADOW #}
+  
+  {% if module.style.shadow == 'outer' %}
+    #hs_cos_wrapper_{{ name }} {
+      position: relative;
+      z-index: 1;
+    }
+    #hs_cos_wrapper_{{ name }} .outer-shadow {
+     -webkit-box-shadow: 0 0 {{ module.style.shadow_size }}px 1px rgba({{ module.style.shadow_color.color|convert_rgb }}, {% if module.style.shadow_color.opacity == '100' %}1{% else %}0.{{ module.style.shadow_color.opacity }}{% endif %});
+      box-shadow: 0 0 {{ module.style.shadow_size }}px 1px rgba({{ module.style.shadow_color.color|convert_rgb }}, {% if module.style.shadow_color.opacity == '100' %}1{% else %}0.{{ module.style.shadow_color.opacity }}{% endif %});   
+      z-index: 1;
+      position: relative;
+    }
+  {% elif module.style.shadow == 'inner' %}
+    #hs_cos_wrapper_{{ name }} .inner-shadow {
+      -webkit-box-shadow:inset 0 0 {{ module.style.shadow_size }}px 1px rgba({{ module.style.shadow_color.color|convert_rgb }},{% if module.style.shadow_color.opacity == '100' %}1{% else %}0.{{ module.style.shadow_color.opacity }}{% endif %});
+      box-shadow:inset 0 0 {{ module.style.shadow_size }}px 1px rgba({{ module.style.shadow_color.color|convert_rgb }}, {% if module.style.shadow_color.opacity == '100' %}1{% else %}0.{{ module.style.shadow_color.opacity }}{% endif %});
+    }
+  {% endif %} 
+  
+   {# END #}
+  
+   {# TABLE STYLE #}  
+  
+  #hs_cos_wrapper_{{ name }} .hhs-table-mod table {
+    background-color: rgba({{ module.style.table.bg_color.color|convert_rgb }}, {{ module.style.table.bg_color.opacity * 0.01 }});
+  }
+  
+  #hs_cos_wrapper_{{ name }} .hhs-table-mod table th,
+  #hs_cos_wrapper_{{ name }} .hhs-table-mod table td {
+    text-align: {{ module.style.table.text_alignment }};
+  }
+  
+
+  
+  #hs_cos_wrapper_{{ name }} table,
+  #hs_cos_wrapper_{{ name }} table tr {
+   border: 1px solid rgba({{ module.style.table.border_color.color|convert_rgb }}, {{ module.style.table.border_color.opacity * 0.01 }});
+  }
+  
+
+  
+</style>
+
+
+<div id="{{ module.code.section_id }}" class="hhs-table-mod  {% if module.style.shadow == 'inner' %}inner-shadow{% endif %} {% if module.style.shadow == 'outer' %}outer-shadow{% endif %} {{ module.code.section_class }}" >
+  <div class="{{ module.style.content_width }}" style="{% if module.style.content_width == 'custom' %} max-width: {{ module.style.set_width }}px; margin: auto;{% endif %}">
+    <table id="tableId">
+      <thead class="hey" style="display: relative !important;">
+        <tr>
+          <th scope="col"><span>{{ module.titles.col_1 }}</span></th>
+          <th scope="col"><span>{{ module.titles.col_2 }}</span></th>
+          {% if module.start.num_cols == '3' or module.start.num_cols == '4' or module.start.num_cols == '5' or module.start.num_cols == '6' or module.start.num_cols == '7' or module.start.num_cols == '8' or module.start.num_cols == '9' or module.start.num_cols == '10'%}
+            <th scope="col"><span>{{ module.titles.col_3 }}</span></th>
+          {% endif %}
+          {% if module.start.num_cols == '4' or module.start.num_cols == '5' or module.start.num_cols == '6' or module.start.num_cols == '7' or module.start.num_cols == '8' or module.start.num_cols == '9' or module.start.num_cols == '10'%}
+            <th scope="col"><span>{{ module.titles.col_4 }}</span></th>
+          {% endif %}
+          {% if module.start.num_cols == '5' or module.start.num_cols == '6' or module.start.num_cols == '7' or module.start.num_cols == '8' or module.start.num_cols == '9' or module.start.num_cols == '10'%}
+            <th scope="col"><span>{{ module.titles.col_5 }}</span></th>
+          {% endif %}
+          {% if module.start.num_cols == '6' or module.start.num_cols == '7' or module.start.num_cols == '8' or module.start.num_cols == '9' or module.start.num_cols == '10'%}
+            <th scope="col"><span>{{ module.titles.col_6 }}</span></th>
+          {% endif %}
+          {% if module.start.num_cols == '7' or module.start.num_cols == '8' or module.start.num_cols == '9' or module.start.num_cols == '10'%}
+            <th scope="col"><span>{{ module.titles.col_7 }}</span></th>
+          {% endif %}
+           {% if module.start.num_cols == '8' or module.start.num_cols == '9' or module.start.num_cols == '10'%}
+            <th scope="col"><span>{{ module.titles.col_8 }}</span></th>
+          {% endif %}
+            {% if module.start.num_cols == '9' or module.start.num_cols == '10' %}
+            <th scope="col"><span>{{ module.titles.col_9 }}</span></th>
+          {% endif %}
+          {% if module.start.num_cols == '10' %}
+          <th scope="col"><span>{{ module.titles.col_10 }}</span></th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        <div class="mobile-close-btn">
+          &times;
+        </div>
+        <div class="bg-overlay">
+          
+        </div>
+        {% for item in module.content %}
+        <tr>
+          <td class="table-data" scope="row" data-label="{{ module.titles.col_1 }}">{% inline_rich_text field="col_1" value="{{ item.col_1 }}" %}</td>
+          <td data-label="{{ module.titles.col_2 }}" class="link-opt"><span class="link-number">{% inline_rich_text field="col_2" value="{{ item.col_2 }}" %}</span>
+            <div class="pop-up__container" style="display: none;">
+              <div class="pop-up__wrapper">
+                <div class="pop-up__content">
+                  {% if item.image_field.src %}
+                  {% set sizeAttrs = 'width="{{ item.image_field.width }}" height="{{ item.image_field.height }}"' %}
+                  {% if item.image_field.size_type == 'auto' %}
+                  {% set sizeAttrs = 'width="{{ item.image_field.width }}" height="{{ item.image_field.height }}" style="max-width: 100%; height: auto;"' %}
+                  {% elif item.image_field.size_type == 'auto_custom_max' %}
+                  {% set sizeAttrs = 'width="{{ item.image_field.max_width }}" height="{{ item.image_field.max_height }}" style="max-width: 100%; height: auto;"' %}
+                  {% endif %}
+                  {% set loadingAttr = item.image_field.loading != 'disabled' ? 'loading="{{ item.image_field.loading }}"' : '' %}
+                  <img src="{{ item.image_field.src }}" alt="{{ item.image_field.alt }}" {{ loadingAttr }} {{ sizeAttrs }}>
+                  {% endif %}
+                  {% inline_rich_text field="spec_content" value="{{ item.spec_content }}" %}
+                </div>
+              </div>
+            </div>
+          </td>
+          {% if module.start.num_cols == '3' or module.start.num_cols == '4' or module.start.num_cols == '5' or module.start.num_cols == '6' or module.start.num_cols == '7' or module.start.num_cols == '8' or module.start.num_cols == '9' or module.start.num_cols == '10' %}
+          <td data-label="{{ module.titles.col_3 }}">{% inline_rich_text field="col_3" value="{{ item.col_3 }}" %}</td>
+          {% endif %}
+          {% if module.start.num_cols == '4' or module.start.num_cols == '5' or module.start.num_cols == '6' or module.start.num_cols == '7' or module.start.num_cols == '8' or module.start.num_cols == '9' or module.start.num_cols == '10' %}
+          <td data-label="{{ module.titles.col_4 }}">{% inline_rich_text field="col_4" value="{{ item.col_4 }}" %}</td>
+          {% endif %}
+          {% if module.start.num_cols == '5' or module.start.num_cols == '6' or module.start.num_cols == '7' or module.start.num_cols == '8' or module.start.num_cols == '9' or module.start.num_cols == '10' %}
+          <td data-label="{{ module.titles.col_5 }}">{% inline_rich_text field="col_5" value="{{ item.col_5 }}" %}</td>
+          {% endif %}
+          {% if module.start.num_cols == '6' or module.start.num_cols == '7' or module.start.num_cols == '8' or module.start.num_cols == '9' or module.start.num_cols == '10' %}
+          <td data-label="{{ module.titles.col_6 }}">{% inline_rich_text field="col_6" value="{{ item.col_6 }}" %}</td>
+          {% endif %}
+          {% if module.start.num_cols == '7' or module.start.num_cols == '8' or module.start.num_cols == '9' or module.start.num_cols == '10' %}
+          <td data-label="{{ module.titles.col_7 }}">{% inline_rich_text field="col_7" value="{{ item.col_7 }}" %}</td>
+          {% endif %}            
+          {% if module.start.num_cols == '8' or module.start.num_cols == '9' or module.start.num_cols == '10' %}
+          <td data-label="{{ module.titles.col_8 }}">{% inline_rich_text field="col_8" value="{{ item.col_8 }}" %}</td>
+          {% endif %}
+          {% if module.start.num_cols == '9' or module.start.num_cols == '10' %}
+          <td data-label="{{ module.titles.col_9 }}">{% inline_rich_text field="col_9" value="{{ item.col_9 }}" %}</td>
+          {% endif %}
+          {% if module.start.num_cols == '10' %}
+          <td data-label="{{ module.titles.col_10 }}">{% inline_rich_text field="col_10" value="{{ item.col_10 }}" %}</td>
+          {% endif %}
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<style>
+  /* begin table styling */
+  tbody tr:nth-child(odd){
+    background-color: #f0f0f0 !important;
+  }
+
+  tbody tr p{
+    color: #444 !important;
+  }
+
+
+  tbody tr a{
+    color: #fdb913 !important;
+    font-weight: bold !important;
+    font-size: 1em !important !important;
+    text-decoration: underline !important;
+  }
+
+  tbody tr span {
+    font-size: 1em !important;
+  }
+
+  tbody tr p {
+    color: #000000 !important;
+    font-family: 'Roboto' !important;
+  }
+  tbody tr span {
+    color: #444444 !important;
+    font-size: 1em !important;
+  }
+
+  tr td {
+    color: #444444 !important;
+  }
+
+  tr td .hs_cos_wrapper_type_inline_rich_text {
+    color: #444444 !important;
+  }
+
+  table td:before {
+    font-size: .8rem !important;
+  }
+  
+  .link-number>.hs_cos_wrapper {
+    color: #692686 !important;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 992px)
+    table .hey {
+      position: relative !important;
+  }
+
+  @media screen and (max-width: 992px) {
+    .hhs-table-mod table tr {
+      display: table-row !important;
+      margin-bottom: .625em;
+    }
+  }
+
+  @media screen and (max-width: 992px)
+    .hhs-table-mod table .table-data {
+      display: none !important;
+      font-size: .8em;
+      text-align: right;
+  }
+
+  @media screen and (max-width: 992px){
+    table td:before {
+      display: none !important;
+      float: left;
+      font-weight: 700;
+      padding-right: 20px;
+      padding-bottom: 1px;
+    }
+    .hhs-table-mod table td, .hhs-table-mod table th {
+      display: table-cell!important;
+    }
+    .hhs-table-mod .container {
+      overflow-x: auto !important;
+    }
+    table {
+      width: 1300px !important;
+    }
+    table thead {
+      border: none;
+      clip: auto;
+      overflow: visible !important;
+      padding: 0;
+      position: relative;
+    }
+  }
+</style>
+{{ require_css(get_asset_url("../../row-flexi-table-u.css"), { async: true }) }}
+
+
+
+<script>
+  const popUp = document.querySelectorAll('.pop-up__container')
+  const linkOpt = document.querySelectorAll('.link-opt')
+  const closeBtn = document.querySelector('.mobile-close-btn')
+  const bGOverlay = document.querySelector('.bg-overlay')
+  const body = document.querySelector('body')
+
+  linkOpt.forEach((data, i) => {
+    data.setAttribute('id', i)
+    data.addEventListener('click', () => {
+      const tdDiv = data.querySelector('.pop-up__container')
+      bGOverlay.style.display = 'block'
+      closeBtn.style.display = 'block'
+      tdDiv.style.display = 'block'
+      closeBtn.addEventListener('click', () => {
+        bGOverlay.style.display = 'none'
+        tdDiv.style.display = 'none'
+        closeBtn.style.display = 'none'
+      })
+    })
+  })
+
+
+</script>
